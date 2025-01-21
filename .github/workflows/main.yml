@@ -24,3 +24,11 @@ jobs:
 
       - name: Run Selenium Script
         run: python dein_script.py
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "Dein Name"
+          git config --global user.email "deine.email@example.com"
+          git add anzeigen.json
+          git commit -m "Update anzeigen.json"
+          git push origin main
