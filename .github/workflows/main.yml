@@ -10,18 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3name: Run Selenium Script Every Minute
-
-on:
-  schedule:
-    - cron: "*/1 * * * *"  # Führt das Skript jede Minute aus
-  workflow_dispatch:        # Manuelles Starten des Workflows
-
-jobs:
-  selenium:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
         uses: actions/checkout@v3
 
       - name: Set up Python
@@ -42,27 +30,6 @@ jobs:
           tar -xzf geckodriver-$GECKODRIVER_VERSION-linux64.tar.gz
           sudo mv geckodriver /usr/local/bin/
           geckodriver --version
-
-      - name: Run Selenium Script
-        run: python dein_script.py
-
-      - name: Commit and Push Changes
-        run: |
-          git config --global user.name "Dein Name"
-          git config --global user.email "deine.email@example.com"
-          git add anzeigen.json
-          git commit -m "Update anzeigen.json"
-          git push origin main
-
-      - name: Set up Python
-        uses: actions/setup-python@v3
-        with:
-          python-version: 3.9
-
-      - name: Install Dependencies
-        run: |
-          pip install -r requirements.txt
-          sudo apt-get install -y firefox geckodriver
 
       - name: Run Selenium Script
         run: python dein_script.py
